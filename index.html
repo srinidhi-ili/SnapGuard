@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapshot Lifecycle Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">S</div>
+                <div>
+                    <h2>SnapGuard</h2>
+                    <p>Cloud Backup Manager</p>
+                </div>
+            </div>
+
+            <p class="menu-label">MAIN MENU</p>
+
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-link active">▦ Dashboard</a>
+                <a href="#snapshots" class="nav-link">▤ Snapshots</a>
+                <a href="#lifecycle" class="nav-link">◷ Lifecycle Policies</a>
+                <a href="#history" class="nav-link">↻ Backup History</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="cloud-status">
+                    <span class="status-dot"></span>
+                    <div>
+                        <strong>Cloud Monitoring</strong>
+                        <p>Dashboard preview</p>
+                    </div>
+                </div>
+                <p class="sidebar-footer">Snapshot Lifecycle Monitor</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="overview">
+
+            <header class="topbar">
+                <div>
+                    <p class="breadcrumb">Cloud Services / Dashboard</p>
+                    <h1>Snapshot Dashboard</h1>
+                    <p class="page-description">
+                        Monitor your backups, snapshots and lifecycle policies.
+                    </p>
+                </div>
+
+                <div class="profile">
+                    <div class="profile-avatar">A</div>
+                    <div>
+                        <strong>Admin User</strong>
+                        <p>Project Administrator</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Summary Cards -->
+            <section class="summary-grid" aria-label="Snapshot summary">
+
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span>Total Snapshots</span>
+                        <div class="card-icon blue">▤</div>
+                    </div>
+                    <h2>24</h2>
+                    <p class="card-note">Snapshots recorded</p>
+                </article>
+
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span>Completed</span>
+                        <div class="card-icon green">✓</div>
+                    </div>
+                    <h2>20</h2>
+                    <p class="card-note">Backup completed</p>
+                </article>
+
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span>Pending</span>
+                        <div class="card-icon orange">◷</div>
+                    </div>
+                    <h2>3</h2>
+                    <p class="card-note">Awaiting completion</p>
+                </article>
+
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span>Failed</span>
+                        <div class="card-icon red">!</div>
+                    </div>
+                    <h2>1</h2>
+                    <p class="card-note">Needs attention</p>
+                </article>
+
+            </section>
+
+            <!-- Snapshot Table -->
+            <section class="content-panel" id="snapshots">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Recent Snapshots</h2>
+                        <p>Review backup status and retention details.</p>
+                    </div>
+
+                    <button class="secondary-button" type="button">
+                        Refresh
+                    </button>
+                </div>
+
+                <div class="table-toolbar">
+                    <label for="searchInput" class="search-box">
+                        <span>⌕</span>
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search snapshots..."
+                        >
+                    </label>
+
+                    <label class="filter-box">
+                        <span class="visually-hidden">Filter by status</span>
+                        <select id="statusFilter">
+                            <option value="">All statuses</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Snapshot ID</th>
+                                <th>Volume ID</th>
+                                <th>Created On</th>
+                                <th>Size</th>
+                                <th>Status</th>
+                                <th>Retention</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="snapshotTableBody">
+                            <tr>
+                                <td class="snapshot-id">snap-0a12bc34</td>
+                                <td>vol-0123ab45</td>
+                                <td>28 Oct 2026</td>
+                                <td>12 GB</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td>30 days</td>
+                            </tr>
+
+                            <tr>
+                                <td class="snapshot-id">snap-0b23cd45</td>
+                                <td>vol-0234bc56</td>
+                                <td>27 Oct 2026</td>
+                                <td>8 GB</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>14 days</td>
+                            </tr>
+
+                            <tr>
+                                <td class="snapshot-id">snap-0c34de56</td>
+                                <td>vol-0345cd67</td>
+                                <td>26 Oct 2026</td>
+                                <td>16 GB</td>
+                                <td><span class="status-badge failed">Failed</span></td>
+                                <td>7 days</td>
+                            </tr>
+
+                            <tr>
+                                <td class="snapshot-id">snap-0d45ef67</td>
+                                <td>vol-0456de78</td>
+                                <td>25 Oct 2026</td>
+                                <td>10 GB</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td>30 days</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="demo-note">
+                    Demo data only — connect to AWS to display actual snapshots.
+                </p>
+
+            </section>
+
+            <!-- Lifecycle Information -->
+            <section class="lifecycle-grid" id="lifecycle">
+
+                <article class="content-panel lifecycle-card">
+                    <div class="section-heading">
+                        <div class="card-icon blue">◷</div>
+                        <div>
+                            <h2>Lifecycle Policy</h2>
+                            <p>Automated backup configuration</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Backup Schedule</span>
+                        <strong>Daily</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Retention Period</span>
+                        <strong>30 days</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Policy Status</span>
+                        <span class="status-badge completed">Demo Active</span>
+                    </div>
+                </article>
+
+                <article class="content-panel lifecycle-card" id="history">
+                    <div class="section-heading">
+                        <div class="card-icon purple">↻</div>
+                        <div>
+                            <h2>Backup Overview</h2>
+                            <p>Snapshot lifecycle summary</p>
+                        </div>
+                    </div>
+
+                    <div class="overview-number">24</div>
+                    <p class="overview-caption">Sample snapshots tracked</p>
+
+                    <div class="progress-track">
+                        <div class="progress-fill"></div>
+                    </div>
+
+                    <p class="progress-caption">
+                        Sample completion rate: 83%
+                    </p>
+                </article>
+
+            </section>
+
+            <footer class="page-footer">
+                <p>SnapGuard · Snapshot Lifecycle Monitoring Dashboard</p>
+                <p>Academic Cloud Computing Project</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
